@@ -27,9 +27,13 @@ def json_data(data):
         py_data = json.load(f)
         # pprint(py_data)
 
+        title , meme = py_data["title"] , py_data['url']
         print('Meme Results 😄')
-        print(f'Title --> {py_data["title"]}')
-        print(f"Meme-link --> {py_data['url']}")
+        print(f'Title --> {title}')
+        print(f"Meme-link --> {meme}")
+
+    return title, meme
+
 
 
 
@@ -37,5 +41,6 @@ if __name__ == "__main__":
 
     req = Basic_setup(url=END_POINT)
     json_data(data=req.json())
+
 
     print('Code Completed 🔥')
