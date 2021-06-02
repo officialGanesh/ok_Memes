@@ -1,5 +1,5 @@
 # Import the required modules
-import requests, csv, json
+import requests, json
 from pprint import pprint
 
 END_POINT = 'https://meme-api.herokuapp.com/gimme'
@@ -30,6 +30,8 @@ def json_data(data):
         print('Meme Results 😄')
         print(f'Title --> {py_data["title"]}')
         print(f"Meme-link --> {py_data['url']}")
+
+
 
 if __name__ == "__main__":
 
