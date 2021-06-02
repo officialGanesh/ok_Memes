@@ -1,6 +1,8 @@
 # Import the required modules
 import requests, json
 from pprint import pprint
+import cv2 as cv
+
 
 END_POINT = 'https://meme-api.herokuapp.com/gimme'
 
@@ -34,13 +36,27 @@ def json_data(data):
 
     return title, meme
 
+def show_meme(properties):
+    '''Displaying The Meme On The Screen'''
+    
+    img_data = requests.get(properties[1]).content
+    with open('Results/meme.jpg','wb') as f:
+        f.write(img_data)
 
+    try:
+        img = cv.imread('Results\meme.jpg')
+        img = cv.resize(img,(400,400))
+        cv.imshow(properties[0],img)
 
+        cv.waitKey(0)
+        cv.destroyAllWindows()
+    except:
+        print('Meme')
 
 if __name__ == "__main__":
 
     req = Basic_setup(url=END_POINT)
-    json_data(data=req.json())
-
+    obj = json_data(data=req.json())
+    show_meme(properties=obj)
 
     print('Code Completed 🔥')
